@@ -9,7 +9,8 @@ import IconHospital from './map.svg';
 import IconHospitalActive from './map-active.svg';
 
 
-export {IconBackDark, IconAddPhoto, IconRemovePhoto,
+export {
+    IconBackDark, IconAddPhoto, IconRemovePhoto,
     IconDoctor,
     IconDoctorActive,
     IconMessage,
