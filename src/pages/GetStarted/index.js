@@ -3,7 +3,7 @@
 import { ILLogo, ILGetStarted } from '../../assets'
 import { Button, Gap } from '../../components'
  
- const GetStarted = () => {
+ const GetStarted = ({navigation}) => {
      return (
          <ImageBackground source={ILGetStarted} style={styles.page}>
              <View>
@@ -11,9 +11,9 @@ import { Button, Gap } from '../../components'
                 <Text style={styles.title} >Konsultasi dengan dokter jadi lebih mudah & fleksibel</Text>
              </View>
             <View >
-                <Button type="primary" title="Get Started" />
+                <Button type="primary" title="Get Started" onPress={() => navigation.navigate('Register')} />
                 <Gap height={16} />
-                <Button type="secondary" title="Sign In" />
+                <Button type="secondary" title="Sign In" onPress={() => navigation.navigate('Login')} />
              </View>
          </ImageBackground >
      )
