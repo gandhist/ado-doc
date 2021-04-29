@@ -2,6 +2,7 @@
  import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { ILLogo, ILGetStarted } from '../../assets'
 import { Button, Gap } from '../../components'
+import { colors, fonts } from '../../utils'
  
  const GetStarted = ({navigation}) => {
      return (
@@ -25,13 +26,13 @@ import { Button, Gap } from '../../components'
      page: {
          padding: 40,
          justifyContent: 'space-between',
-         backgroundColor: 'pink',
+         backgroundColor: colors.white,
          flex: 1
      },
      title: {
-         fontFamily: 'Nunito-SemiBold',
+         fontFamily: fonts.primary[600],
          fontSize:28,
-         color: 'white',
+         color: colors.white,
          marginTop: 91
      }
  })

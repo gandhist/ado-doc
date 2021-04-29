@@ -1,14 +1,4 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import Header from "./Header";
 
-const index = () => {
-    return (
-        <View>
-            <Text>dd</Text>
-        </View>
-    )
-}
 
-export default index
-
-const styles = StyleSheet.create({})
+export {Header}
