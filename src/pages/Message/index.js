@@ -1,16 +1,38 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { DummyDokter1, DummyDokter2, DummyDokter3 } from '../../assets'
 import { ListDoctor } from '../../components'
 import { colors, fonts } from '../../utils'
 
 const Message = () => {
+
+    const [listDokter, setListDokter] = useState([
+        {
+            id: 1,
+            profile: DummyDokter1,
+            name: 'Conor Mcnugget',
+            desc: 'Swallowed teeth, broken feet, broken fingers..'
+        },
+        {
+            id: 2,
+            profile: DummyDokter2,
+            name: 'Tony El Cucuy',
+            desc: 'Type of guy'
+        },
+        {
+            id: 3,
+            profile: DummyDokter3,
+            name: 'Dustin Poirier',
+            desc: 'just send me donation'
+        },
+    ])
     return (
         <View style={styles.page}>
             <View style={styles.content} >
                 <Text style={styles.title}>Message</Text>
-                <ListDoctor />
-                <ListDoctor />
-                <ListDoctor />
+                {
+                    listDokter.map((dokter, index) => <ListDoctor key={index} profile={dokter.profile} name={dokter.name} desc={dokter.desc} />)
+                }
             </View>
             
         </View>

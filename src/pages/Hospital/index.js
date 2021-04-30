@@ -1,6 +1,6 @@
 import React from 'react'
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import { ILHospitalBg } from '../../assets'
+import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { DummyHospital1, DummyHospital2, DummyHospital3, ILHospitalBg } from '../../assets'
 import { ListHospital } from '../../components/molecules'
 import { colors, fonts } from '../../utils'
 
@@ -12,9 +12,14 @@ const Hospital = () => {
                 <Text style={styles.desc}>3 Terdekat</Text>
             </ImageBackground>
             <View style={styles.content}>
-                <ListHospital />
-                <ListHospital />
-                <ListHospital />
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <ListHospital pic={DummyHospital1} type="Rumah Sakit" name="Citra Bunga Merdeka" address="jln. Surya Sejahtera 20" />
+                    <ListHospital pic={DummyHospital2} type="Rumah Sakit Anak" name="Happy Family & Kids" address="jln. Surya Sejahtera 20" />
+                    <ListHospital pic={DummyHospital3} type="Rumah Sakit Jiwa" name="Tingkat Paling atas" address="jln. Surya Sejahtera 20" />
+                    <ListHospital pic={DummyHospital1} type="Rumah Sakit" name="Citra Bunga Merdeka" address="jln. Surya Sejahtera 20" />
+                    <ListHospital pic={DummyHospital2} type="Rumah Sakit Anak" name="Happy Family & Kids" address="jln. Surya Sejahtera 20" />
+                    <ListHospital pic={DummyHospital3} type="Rumah Sakit Jiwa" name="Tingkat Paling atas" address="jln. Surya Sejahtera 20" />
+                </ScrollView>
             </View>
         </View>
     )
