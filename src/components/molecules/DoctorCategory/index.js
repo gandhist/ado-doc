@@ -1,15 +1,21 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { ILDokUmum } from '../../../assets'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ILDokUmum, ILDokPsi, ILDokObat } from '../../../assets'
 import { colors, fonts } from '../../../utils'
 
-const DoctorCategory = () => {
+const DoctorCategory = ({title, category, onPress}) => {
+    const Icon = () => {
+        if(category === 'umum') return <ILDokUmum style={styles.ilustration} />
+        if(category === 'psi') return <ILDokPsi style={styles.ilustration} />
+        if(category === 'obat') return <ILDokObat style={styles.ilustration} />
+        return <ILDokUmum style={styles.ilustration} />;
+    }
     return (
-        <View style={styles.container} >
-            <ILDokUmum style={styles.ilustration} />
-            <Text style={styles.label}>I need general doctor</Text>
-            <Text style={styles.labelCat}>Dokter umum</Text>
-        </View>
+        <TouchableOpacity style={styles.container} onPress={onPress} >
+            <Icon />
+            <Text style={styles.label}>Saya butuh</Text>
+            <Text style={styles.labelCat}>{title}</Text>
+        </TouchableOpacity>
     )
 }
 

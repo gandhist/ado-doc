@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { DoctorCategory, HomeProfile, RatedDoctor, NewsItem, Gap } from '../../components'
 import { colors, fonts } from '../../utils'
 
-const Doctor = () => {
+const Doctor = ({navigation}) => {
     return (
         <View style={styles.page} >
             <View style={styles.content}>
@@ -17,10 +17,10 @@ const Doctor = () => {
                         <ScrollView horizontal showsHorizontalScrollIndicator={false} >
                             <View style={styles.category}>
                                 <Gap width={32} />
-                                <DoctorCategory />
-                                <DoctorCategory />
-                                <DoctorCategory />
-                                <DoctorCategory />
+                                <DoctorCategory title="Dokter Umum" category='umum' onPress={() => navigation.navigate('ChooseDoctor') } />
+                                <DoctorCategory title="Psikiater" category='psi' onPress={() => {console.log('asdasds')}} />
+                                <DoctorCategory title="Dokter Obat" category='obat' onPress={() => {console.log('asdasds')}} />
+                                <DoctorCategory title="Psikiater" category='psi' onPress={() => {console.log('asdasds')}} />
                                 <Gap width={22} />
 
                             </View>
@@ -33,7 +33,6 @@ const Doctor = () => {
                         <RatedDoctor />
                         <Text style={styles.sectionLabel}>Good news</Text>
                     </View>
-
                     <NewsItem />
                     <NewsItem />
                     <NewsItem />
