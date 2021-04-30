@@ -7,6 +7,7 @@ import IconMessage from './message.svg';
 import IconMessageActive from './message-active.svg';
 import IconHospital from './map.svg';
 import IconHospitalActive from './map-active.svg';
+import IconStar from './star.svg';
 
 
 export {
@@ -17,4 +18,5 @@ export {
     IconMessageActive,
     IconHospital,
     IconHospitalActive,
+    IconStar
 }
