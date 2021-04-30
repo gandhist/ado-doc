@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { DummyDokter1, DummyDokter2, DummyDokter3 } from '../../assets'
-import { ListDoctor } from '../../components'
+import { List } from '../../components'
 import { colors, fonts } from '../../utils'
 
 const Message = () => {
@@ -31,10 +31,10 @@ const Message = () => {
             <View style={styles.content} >
                 <Text style={styles.title}>Message</Text>
                 {
-                    listDokter.map((dokter, index) => <ListDoctor key={index} profile={dokter.profile} name={dokter.name} desc={dokter.desc} />)
+                    listDokter.map((dokter, index) => <List key={index} profile={dokter.profile} name={dokter.name} desc={dokter.desc} />)
                 }
             </View>
-            
+
         </View>
     )
 }
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.secondary,
         flex: 1
     },
-    content : {
+    content: {
         backgroundColor: colors.white,
         flex: 1,
         borderBottomLeftRadius: 20,
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
         fontFamily: fonts.primary[600],
         color: colors.text.primary,
         marginTop: 30,
-        marginLeft:16
+        marginLeft: 16
     }
 })

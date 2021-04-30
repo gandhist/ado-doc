@@ -4,10 +4,10 @@ import { DummyDokter1 } from '../../../assets'
 import { colors, fonts } from '../../../utils'
 import { Button } from '../../atoms'
 
-const DarkProfile = () => {
+const DarkProfile = ({ onPress }) => {
     return (
         <View style={styles.container} >
-            <Button type="icon-only" icon="back-light" />
+            <Button type="icon-only" icon="back-light" onPress={onPress} />
             <View style={styles.content} >
                 <Text style={styles.name} >Conor Mcgregor</Text>
                 <Text style={styles.desc} >Doctor Bullshit</Text>
@@ -20,7 +20,7 @@ const DarkProfile = () => {
 export default DarkProfile
 
 const styles = StyleSheet.create({
-    container : {
+    container: {
         backgroundColor: colors.secondary,
         paddingVertical: 30,
         paddingLeft: 20,
@@ -30,13 +30,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    content : {
-        flex:1
+    content: {
+        flex: 1
     },
-    avatar : {
+    avatar: {
         width: 46,
         height: 46,
-        borderRadius: 46 /2 
+        borderRadius: 46 / 2
     },
     name: {
         fontSize: 20,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         textAlign: 'center'
     },
-    desc : {
+    desc: {
         fontSize: 14,
         fontFamily: fonts.primary.normal,
         marginTop: 6,

@@ -1,27 +1,34 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { IconNext } from '../../../assets'
+import { IconEditProfile, IconGiveRate, IconHelpCenter, IconLanguage, IconNext } from '../../../assets'
 import { colors, fonts } from '../../../utils'
 
-const ListDoctor = ({profile, name, desc, type, onPress}) => {
+const List = ({ profile, name, desc, type, onPress, icon }) => {
+    const Icon = () => {
+        if (icon === 'edit-profile') return <IconEditProfile />;
+        if (icon === 'language') return <IconLanguage />;
+        if (icon === 'give-rate') return <IconGiveRate />;
+        if (icon === 'help-center') return <IconHelpCenter />;
+        return <IconEditProfile />
+    }
     return (
         <TouchableOpacity style={styles.container} onPress={onPress} >
-            <Image style={styles.avatar} source={profile} />
+            {icon ? <Icon /> : <Image style={styles.avatar} source={profile} />}
             <View style={styles.content} >
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.desc}>{desc}</Text>
             </View>
             <View>
-                {type === 'next' && <IconNext /> }
+                {type === 'next' && <IconNext />}
             </View>
         </TouchableOpacity>
     )
 }
 
-export default ListDoctor
+export default List
 
 const styles = StyleSheet.create({
-    container : {
+    container: {
         flexDirection: 'row',
         padding: 16,
         borderBottomWidth: 1,
@@ -29,21 +36,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between'
     },
-    content : {
-        flex: 1
+    content: {
+        flex: 1,
+        marginLeft: 16
     },
     avatar: {
         width: 46,
         height: 46,
-        borderRadius: 46/2,
-        marginRight: 12
+        borderRadius: 46 / 2,
     },
-    name : {
+    name: {
         fontSize: 16,
         fontFamily: fonts.primary.normal,
         color: colors.text.primary
     },
-    desc : {
+    desc: {
         fontSize: 12,
         fontFamily: fonts.primary[300],
         color: colors.text.secondary

@@ -8,5 +8,6 @@ import Message from "./Message";
 import Hospital from "./Hospital";
 import ChooseDoctor from "./ChooseDoctor";
 import Chatting from "./Chatting";
+import UserProfile from "./UserProfile";
 
-export {Splash, GetStarted, Login, Register, UploadPhoto, Doctor, Message, Hospital, ChooseDoctor, Chatting}
+export { Splash, GetStarted, Login, Register, UploadPhoto, Doctor, Message, Hospital, ChooseDoctor, Chatting, UserProfile }

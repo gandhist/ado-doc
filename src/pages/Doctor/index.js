@@ -1,26 +1,26 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { DoctorCategory, HomeProfile, RatedDoctor, NewsItem, Gap } from '../../components'
 import { colors, fonts } from '../../utils'
 
-const Doctor = ({navigation}) => {
+const Doctor = ({ navigation }) => {
     return (
         <View style={styles.page} >
             <View style={styles.content}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.wrapperSection}>
                         <Gap height={30} />
-                        <HomeProfile />
+                        <HomeProfile onPress={() => navigation.navigate('UserProfile')} />
                         <Text style={styles.welcome}>Mau konsultasi dengan siapa hari ini?</Text>
                     </View>
                     <View style={styles.wrapperScroll} >
                         <ScrollView horizontal showsHorizontalScrollIndicator={false} >
                             <View style={styles.category}>
                                 <Gap width={32} />
-                                <DoctorCategory title="Dokter Umum" category='umum' onPress={() => navigation.navigate('ChooseDoctor') } />
-                                <DoctorCategory title="Psikiater" category='psi' onPress={() => {console.log('asdasds')}} />
-                                <DoctorCategory title="Dokter Obat" category='obat' onPress={() => {console.log('asdasds')}} />
-                                <DoctorCategory title="Psikiater" category='psi' onPress={() => {console.log('asdasds')}} />
+                                <DoctorCategory title="Dokter Umum" category='umum' onPress={() => navigation.navigate('ChooseDoctor')} />
+                                <DoctorCategory title="Psikiater" category='psi' onPress={() => { console.log('asdasds') }} />
+                                <DoctorCategory title="Dokter Obat" category='obat' onPress={() => { console.log('asdasds') }} />
+                                <DoctorCategory title="Psikiater" category='psi' onPress={() => { console.log('asdasds') }} />
                                 <Gap width={22} />
 
                             </View>
