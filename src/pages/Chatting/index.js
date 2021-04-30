@@ -9,9 +9,9 @@ const Chatting = () => {
             <Header title="Conor Mcgregor" type="dark-profile" onPress={() => navigation.goBack()} />
             <View style={styles.content} >
                 <Text style={styles.chatDate} >Jumaat 13 April 1996</Text>
-                <ChatItem />
-                <ChatItem />
-                <ChatItem />
+                <ChatItem isMe={true} />
+                <ChatItem isMe={false} />
+                <ChatItem isMe={true} />
             </View>
             <InputChat />
         </View>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     content: {
-        flex:1
+        flex: 1
     },
     chatDate: {
         fontSize: 11,
