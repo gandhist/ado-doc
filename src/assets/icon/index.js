@@ -10,6 +10,8 @@ import IconHospital from './map.svg';
 import IconHospitalActive from './map-active.svg';
 import IconStar from './star.svg';
 import IconNext from './chevron_right.svg';
+import IconSend from './send.svg';
+import IconSendActive from './send-active.svg';
 
 
 export {
@@ -22,5 +24,7 @@ export {
     IconHospitalActive,
     IconStar,
     IconNext,
-    IconBackLight
+    IconBackLight,
+    IconSend,
+    IconSendActive
 }
