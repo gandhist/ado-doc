@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
-import { Button, Gap, Header, Input, Loading } from '../../components'
-import { colors, getData, storeData, useForm } from '../../utils'
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { showMessage } from "react-native-flash-message";
+import { Button, Gap, Header, Input, Loading } from '../../components';
 import { Firebase } from "../../config";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { colors, storeData, useForm } from '../../utils';
 
 
 const Register = ({ navigation }) => {
@@ -39,7 +39,7 @@ const Register = ({ navigation }) => {
                     type: "success",
                     animated: true,
                     hideOnPress: true,
-                    autoHide: false
+                    autoHide: true
                 });
                 storeData('user', dataUser)
                 navigation.navigate('UploadPhoto', dataUser)

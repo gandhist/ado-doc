@@ -20,3 +20,13 @@ export const getData = async (key) => {
         // error reading value
     }
 }
+
+export const removeData = async (key) => {
+    try {
+        await AsyncStorage.removeItem(key)
+    } catch (e) {
+        // remove error
+    }
+
+    console.log(`localstorage ${key} removed.`)
+}

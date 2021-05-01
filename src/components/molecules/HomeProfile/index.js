@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { DummyUser } from '../../../assets'
 import { colors, fonts, getData } from '../../../utils'
 
 const HomeProfile = ({ onPress }) => {
@@ -13,6 +14,7 @@ const HomeProfile = ({ onPress }) => {
     useEffect(() => {
         getData('user').then(res => {
             const data = res
+            data.photo = { uri: res.photo }
             setProfile(data)
         })
     }, []);
@@ -21,6 +23,7 @@ const HomeProfile = ({ onPress }) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <Image source={profile.photo} style={styles.avatar} />
+            {/* <Image source={DummyUser} style={styles.avatar} /> */}
             <View>
                 <Text style={styles.name} >{profile.fullName}</Text>
                 <Text style={styles.profesi} >{profile.profession}</Text>
