@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { DummyDokter1, DummyDokter2, DummyDokter3 } from '../../assets'
 import { DoctorCategory, HomeProfile, RatedDoctor, NewsItem, Gap } from '../../components'
-import { colors, fonts } from '../../utils'
+import { colors, fonts, getData } from '../../utils'
 
 const Doctor = ({ navigation }) => {
+
     return (
         <View style={styles.page} >
             <View style={styles.content}>

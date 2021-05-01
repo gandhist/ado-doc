@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { Button, Gap, Header, Input, Loading } from '../../components'
-import { colors, useForm } from '../../utils'
+import { colors, getData, storeData, useForm } from '../../utils'
 import { Firebase } from "../../config";
 import { showMessage, hideMessage } from "react-native-flash-message";
+
 
 const Register = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
@@ -15,9 +16,21 @@ const Register = ({ navigation }) => {
         password: '',
     });
     const onContinue = () => {
+
         setLoading(true)
         Firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
             .then((userCredential) => {
+                const dataUser = {
+                    uid: userCredential.user.uid,
+                    fullName: form.fullName,
+                    profession: form.pekerjaan,
+                    email: form.email,
+                    remarks: form.password,
+                }
+                // store user credential 
+                // https://firebase.com/users/uidasdacsdf234/
+                Firebase.database().ref(`users/${userCredential.user.uid}/`)
+                    .set(dataUser) // definedata to save
                 setLoading(false)
                 setForm('reset')
                 showMessage({
@@ -28,9 +41,10 @@ const Register = ({ navigation }) => {
                     hideOnPress: true,
                     autoHide: false
                 });
+                storeData('user', dataUser)
+                navigation.navigate('UploadPhoto', dataUser)
                 // Signed in 
                 var user = userCredential.user;
-                console.log('registration successfully', user)
             })
             .catch((error) => {
                 setLoading(false)
@@ -49,7 +63,6 @@ const Register = ({ navigation }) => {
                 console.log('error while registation', errorMessage)
                 // ..
             });
-        // navigation.navigate('UploadPhoto')
     }
     return (
         <>

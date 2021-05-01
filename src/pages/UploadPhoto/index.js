@@ -1,24 +1,60 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { Button, Gap, Header, Link } from '../../components'
-import { colors, fonts } from '../../utils'
-import { ILNullPhoto, IconAddPhoto } from "../../assets";
+import { colors, fonts, storeData } from '../../utils'
+import { ILNullPhoto, IconAddPhoto, IconRemovePhoto } from "../../assets";
+import { launchCamera, launchImageLibrary, } from 'react-native-image-picker';
+import { Firebase } from '../../config';
 
-const UploadPhoto = ({ navigation }) => {
+const UploadPhoto = ({ route, navigation }) => {
+    const { fullName, profession, uid } = route.params;
+    const [hasPhoto, setHasPhoto] = useState(false)
+    const [photoDB, setPhotoDB] = useState('')
+    const [photo, setPhoto] = useState(ILNullPhoto)
+
+    const getImageFromGallery = () => {
+        const options = {
+            mediaType: 'photo',
+            includeBase64: true,
+            quality: 0.8,
+            maxWidth: 200,
+            maxHeight: 200
+        }
+        launchImageLibrary(options, (res) => {
+            const { didCancel } = res;
+            if (!didCancel) {
+                const source = { uri: res.uri };
+                const photoToDB = `data:${res.type};base64,${res.base64}`;
+                setPhotoDB(photoToDB)
+                setPhoto(source)
+                setHasPhoto(true)
+            }
+        })
+    }
+
+    const upload = () => {
+        Firebase.database().ref(`users/${uid}/`)
+            .update({ photo: photoDB }) // definedata to save
+        const data = route.params;
+        data.photo = { uri: photoDB };
+        storeData('user', data)
+        navigation.replace('MainApp')
+    }
     return (
         <View style={styles.page} >
             <Header onPress={() => navigation.goBack()} title="Upload Photo" />
             <View style={styles.content} >
                 <View style={styles.profile} >
-                    <View style={styles.avatarWrapper}>
-                        <Image source={ILNullPhoto} style={styles.avatar} />
-                        <IconAddPhoto style={styles.addPhoto} />
-                    </View>
-                    <Text style={styles.name}>Khabib Nurmagomedov</Text>
-                    <Text style={styles.job}>UFC Fighter</Text>
+                    <TouchableOpacity style={styles.avatarWrapper} onPress={getImageFromGallery}>
+                        <Image source={photo} style={styles.avatar} />
+                        {hasPhoto && <IconRemovePhoto style={styles.addPhoto} />}
+                        {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
+                    </TouchableOpacity>
+                    <Text style={styles.name}>{fullName}</Text>
+                    <Text style={styles.job}>{profession}</Text>
                 </View>
                 <View>
-                    <Button title="Upload and Continue" onPress={() => navigation.replace('MainApp')} />
+                    <Button disable={!hasPhoto} title="Upload and Continue" onPress={upload} />
                     <Gap height={30} />
                     <Link title="Skip for this" textAlign="center" size={16} onPress={() => navigation.replace('MainApp')} />
                 </View>
@@ -47,6 +83,7 @@ const styles = StyleSheet.create({
     avatar: {
         height: 110,
         width: 110,
+        borderRadius: 110 / 2
     },
     addPhoto: {
         position: 'absolute',
