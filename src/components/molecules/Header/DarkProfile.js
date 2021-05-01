@@ -22,7 +22,7 @@ export default DarkProfile
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.secondary,
-        paddingVertical: 30,
+        paddingVertical: 18,
         paddingLeft: 20,
         paddingRight: 16,
         borderBottomRightRadius: 20,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { DummyDokter1, DummyDokter2, DummyDokter3 } from '../../assets'
 import { DoctorCategory, HomeProfile, RatedDoctor, NewsItem, Gap } from '../../components'
 import { colors, fonts } from '../../utils'
 
@@ -28,9 +29,9 @@ const Doctor = ({ navigation }) => {
                     </View>
                     <View style={styles.wrapperSection}>
                         <Text style={styles.sectionLabel}>Top rated doctor</Text>
-                        <RatedDoctor />
-                        <RatedDoctor />
-                        <RatedDoctor />
+                        <RatedDoctor avatar={DummyDokter1} onPress={() => navigation.navigate('DoctorProfile')} name="Islam Makhachev" desc="Dokter Mata" />
+                        <RatedDoctor avatar={DummyDokter2} onPress={() => navigation.navigate('DoctorProfile')} name="Abubakar Nurmagomedov" desc="Dokter Surgery" />
+                        <RatedDoctor avatar={DummyDokter3} onPress={() => navigation.navigate('DoctorProfile')} name="Usman Nurmagomedov" desc="Dokter THT" />
                         <Text style={styles.sectionLabel}>Good news</Text>
                     </View>
                     <NewsItem />
