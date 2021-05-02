@@ -4,15 +4,15 @@ import { DummyDokter1 } from '../../../assets'
 import { colors, fonts } from '../../../utils'
 
 
-const Other = () => {
+const Other = ({ text, date, photo }) => {
     return (
         <View style={styles.container}>
-            <Image style={styles.avatar} source={DummyDokter1} />
+            <Image style={styles.avatar} source={photo} />
             <View>
                 <View style={styles.chatContent}>
-                    <Text style={styles.text} >Your grappling is zero, your wrestling is zero</Text>
+                    <Text style={styles.text} >{text}</Text>
                 </View>
-                <Text style={styles.date}>4.20 AM</Text>
+                <Text style={styles.date}>{date}</Text>
             </View>
         </View>
     )
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         padding: 12,
         paddingLeft: 18,
         backgroundColor: colors.primary,
-        maxWidth: '80%',
+        // maxWidth: '80%',
         borderRadius: 10,
         borderBottomLeftRadius: 0
     },

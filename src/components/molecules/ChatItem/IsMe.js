@@ -3,13 +3,13 @@ import { StyleSheet, Text, View } from 'react-native'
 import { colors, fonts } from '../../../utils'
 
 
-const IsMe = () => {
+const IsMe = ({ text, date }) => {
     return (
         <View style={styles.container}>
             <View style={styles.chatContent}>
-                <Text>Your grappling is zero, your wrestling is zero</Text>
+                <Text>{text}</Text>
             </View>
-            <Text style={styles.date}>4.20 AM</Text>
+            <Text style={styles.date}>{date}</Text>
         </View>
     )
 }

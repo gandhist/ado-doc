@@ -3,9 +3,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconSend, IconSendActive } from '../../../assets'
 import { colors } from '../../../utils'
 
-const BtnIcon = ({disable}) => {
+const BtnIcon = ({ disable, onPress }) => {
     return (
-        <TouchableOpacity style={styles.container(disable)} >
+        <TouchableOpacity onPress={onPress} style={styles.container(disable)} >
             {
                 disable ? <IconSend /> : <IconSendActive />
             }
