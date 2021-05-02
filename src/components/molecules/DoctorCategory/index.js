@@ -3,11 +3,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { ILDokUmum, ILDokPsi, ILDokObat } from '../../../assets'
 import { colors, fonts } from '../../../utils'
 
-const DoctorCategory = ({title, category, onPress}) => {
+const DoctorCategory = ({ title, onPress }) => {
     const Icon = () => {
-        if(category === 'umum') return <ILDokUmum style={styles.ilustration} />
-        if(category === 'psi') return <ILDokPsi style={styles.ilustration} />
-        if(category === 'obat') return <ILDokObat style={styles.ilustration} />
+        if (title === 'Dokter Umum') return <ILDokUmum style={styles.ilustration} />
+        if (title === 'Psikiater') return <ILDokPsi style={styles.ilustration} />
+        if (title === 'Dokter Anak') return <ILDokObat style={styles.ilustration} />
         return <ILDokUmum style={styles.ilustration} />;
     }
     return (
@@ -25,20 +25,20 @@ const styles = StyleSheet.create({
     container: {
         padding: 12,
         backgroundColor: colors.cardLight,
-        alignSelf:'flex-start',
+        alignSelf: 'flex-start',
         borderRadius: 10,
         marginRight: 10,
         width: 120,
     },
     ilustration: {
-        marginBottom:28
+        marginBottom: 28
     },
     label: {
         fontSize: 12,
         fontFamily: fonts.primary[300],
         color: colors.text.primary
     },
-    labelCat : {
+    labelCat: {
         fontSize: 12,
         fontFamily: fonts.primary[600],
         color: colors.text.primary

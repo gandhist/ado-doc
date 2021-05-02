@@ -1,32 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useDispatch } from 'react-redux'
 import { ILLogo } from '../../assets'
-import { Button, Gap, Input, Link, Loading } from '../../components'
+import { Button, Gap, Input, Link } from '../../components'
 import { Firebase } from '../../config'
-import { colors, fonts, storeData, getData, useForm } from '../../utils'
-import { showMessage, hideMessage } from "react-native-flash-message";
-
+import { colors, fonts, showError, showSuccess, storeData, useForm } from '../../utils'
 
 const Login = ({ navigation }) => {
-
-    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch();
     const [form, setForm] = useForm({
         email: 'kamaru@email.com',
         password: 'Qw3rty13',
     });
 
     const signIn = () => {
-        // console.log('data login: ', form)
-        setLoading(true)
+        dispatch({ type: 'SET_LOADING', value: true })
         Firebase.auth().signInWithEmailAndPassword(form.email, form.password)
             .then(res => {
-                showMessage({
-                    message: "Berhasil Login!",
-                    type: "success",
-                    animated: true,
-                    hideOnPress: true,
-                    autoHide: true
-                });
+                showSuccess({
+                    message: "Success",
+                    description: "Berhasil login",
+                })
                 Firebase.database().ref(`users/${res.user.uid}`).once('value').then(resDB => {
                     if (resDB.val()) {
                         const data = resDB.val();
@@ -37,48 +31,35 @@ const Login = ({ navigation }) => {
                 })
             })
             .catch(err => {
-                showMessage({
+                showError({
                     message: "Upss.. Something went wrong!",
                     description: err.toString(),
-                    type: "warning",
-                    backgroundColor: colors.error,
-                    color: colors.white,
-                    animated: true,
-                    hideOnPress: true,
-                    autoHide: false
-                });
+                })
             })
             .finally(() => {
-                setLoading(false)
+                dispatch({ type: 'SET_LOADING', value: false })
             })
     }
     return (
-        <>
-
-            <View style={styles.page} >
+        <View style={styles.page} >
+            <Gap height={40} />
+            <ScrollView showsVerticalScrollIndicator={false} >
+                <ILLogo />
+                <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
+                <View>
+                    <Input label="Email Address" secureTextEntry={false} value={form.email} onChangeText={(value) => setForm('email', value)} />
+                    <Gap height={24} />
+                    <Input label="Password" secureTextEntry={true} value={form.password} onChangeText={(value) => setForm('password', value)} />
+                </View>
+                <Gap height={10} />
+                <Link title="Forgot Password" size={12} />
                 <Gap height={40} />
+                <Button title="Sign In" onPress={signIn} />
+                <Gap height={30} />
 
-                <ScrollView showsVerticalScrollIndicator={false} >
-                    <ILLogo />
-                    <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
-                    <View>
-                        <Input label="Email Address" secureTextEntry={false} value={form.email} onChangeText={(value) => setForm('email', value)} />
-                        <Gap height={24} />
-                        <Input label="Password" secureTextEntry={true} value={form.password} onChangeText={(value) => setForm('password', value)} />
-                    </View>
-                    <Gap height={10} />
-                    <Link title="Forgot Password" size={12} />
-                    <Gap height={40} />
-                    <Button title="Sign In" onPress={signIn} />
-                    <Gap height={30} />
-
-                    <Link title="Create New Account" size={16} textAlign="center" onPress={signIn} />
-                </ScrollView>
-            </View>
-            {
-                loading && <Loading />
-            }
-        </>
+                <Link title="Create New Account" size={16} textAlign="center" onPress={signIn} />
+            </ScrollView>
+        </View>
     )
 }
 

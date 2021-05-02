@@ -7,20 +7,18 @@ import { colors, fonts } from '../../utils'
 const Splash = ({ navigation }) => {
 
   useEffect(() => {
-    // setTimeout(() => {
-    Firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // if logged in
-        // console.log('loggin', user)
-        navigation.replace('MainApp')
-      }
-      else {
-        // if not loggedin
-        navigation.replace('GetStarted') // tidak menyimpan history screen sebelumnya
-      }
-    })
-    // }, 2000);
-  }, [])
+    const unsubscribe = Firebase.auth().onAuthStateChanged(user => {
+      setTimeout(() => {
+        if (user) {
+          navigation.replace('MainApp');
+        } else {
+          navigation.replace('GetStarted');
+        }
+      }, 3000);
+    });
+
+    return () => unsubscribe();
+  }, [navigation])
 
 
   return (

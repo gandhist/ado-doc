@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { showMessage } from 'react-native-flash-message';
 import { DummyUser } from '../../assets';
 import { Gap } from '../../components';
 import { Header, List, Profile } from "../../components/molecules";
 import { Firebase } from '../../config';
-import { colors, getData, removeData } from '../../utils';
+import { colors, getData, removeData, showSuccess } from '../../utils';
 
 const UserProfile = ({ navigation }) => {
     const [profile, setProfile] = useState({
         fullName: '',
         profession: '',
-        photo: ''
+        photo: DummyUser
     })
 
     // fungsi logout
     const logout = () => {
         Firebase.auth().signOut().then(() => {
             // Sign-out successful.
-            showMessage({
+            showSuccess({
                 message: "Logout berhasil!",
-                type: "success",
-                animated: true,
-                hideOnPress: true,
-                autoHide: true
+                type: "success"
             });
             removeData('user')
             navigation.replace('GetStarted')

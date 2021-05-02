@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import { Button, Gap, Header, Link } from '../../components'
-import { colors, fonts, storeData } from '../../utils'
-import { ILNullPhoto, IconAddPhoto, IconRemovePhoto } from "../../assets";
-import { launchCamera, launchImageLibrary, } from 'react-native-image-picker';
+import React, { useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from "../../assets";
+import { Button, Gap, Header, Link } from '../../components';
 import { Firebase } from '../../config';
+import { colors, fonts, storeData } from '../../utils';
 
 const UploadPhoto = ({ route, navigation }) => {
     const { fullName, profession, uid } = route.params;
@@ -36,7 +36,7 @@ const UploadPhoto = ({ route, navigation }) => {
         Firebase.database().ref(`users/${uid}/`)
             .update({ photo: photoDB }) // definedata to save
         const data = route.params;
-        data.photo = { uri: photoDB };
+        data.photo = photoDB;
         storeData('user', data)
         navigation.replace('MainApp')
     }

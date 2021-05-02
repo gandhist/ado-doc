@@ -2,12 +2,12 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { IconBackDark, IconBackLight } from '../../../assets'
 
-const IconOnly = ({onPress, icon}) => {
-    const Icon =() => {
-        if(icon === 'back-dark'){
+const IconOnly = ({ onPress, icon }) => {
+    const Icon = () => {
+        if (icon === 'back-dark') {
             return <IconBackDark />
         }
-        if(icon === 'back-light'){
+        if (icon === 'back-light') {
             return <IconBackLight />
         }
         return <IconBackLight />

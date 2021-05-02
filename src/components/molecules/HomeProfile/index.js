@@ -7,7 +7,7 @@ const HomeProfile = ({ onPress }) => {
 
     const [profile, setProfile] = useState({
         fullName: '',
-        photo: '',
+        photo: DummyUser,
         profession: '',
     })
 

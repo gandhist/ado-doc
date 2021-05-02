@@ -3,14 +3,14 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { DummyNews1 } from '../../../assets'
 import { colors, fonts } from '../../../utils'
 
-const NewsItem = () => {
+const NewsItem = ({ title, date, image }) => {
     return (
         <View style={styles.container}>
             <View style={styles.titleWrapper}>
-                <Text style={styles.title}>is it safe to stay at home during coronavirus?</Text>
-                <Text style={styles.date} >Today</Text>
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.date} >{date}</Text>
             </View>
-            <Image style={styles.image} source={DummyNews1} />
+            <Image style={styles.image} source={{ uri: image }} />
         </View>
     )
 }
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         borderBottomColor: colors.border,
-        borderBottomWidth:1,
+        borderBottomWidth: 1,
         paddingBottom: 12,
         paddingTop: 16,
         paddingHorizontal: 16
@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
         color: colors.text.primary,
         maxWidth: '90%'
     },
-    titleWrapper : {
+    titleWrapper: {
         flex: 1
     },
-    date : {
+    date: {
         fontSize: 12,
         fontFamily: fonts.primary.normal,
         color: colors.text.secondary,
