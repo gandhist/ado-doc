@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         backgroundColor: disable ? colors.disable : colors.tertiary,
         width: 45,
         height: 45,
-        borderRadius: 10,
+        borderRadius: 45 / 2,
         paddingTop: 3,
         paddingRight: 8,
         paddingBottom: 3,

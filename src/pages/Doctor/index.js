@@ -92,7 +92,7 @@ const Doctor = ({ navigation }) => {
                     <View style={styles.wrapperSection}>
                         <Text style={styles.sectionLabel}>Top rated doctor</Text>
                         {ratedDoctor.map(doc => {
-                            return <RatedDoctor avatar={{ uri: doc.data.photo }} onPress={() => navigation.navigate('DoctorProfile', doc)} name={doc.data.fullName} desc={doc.data.profession} />
+                            return <RatedDoctor key={doc.id} avatar={{ uri: doc.data.photo }} onPress={() => navigation.navigate('DoctorProfile', doc)} name={doc.data.fullName} desc={doc.data.profession} />
                         })}
                         <Text style={styles.sectionLabel}>Good news</Text>
                     </View>

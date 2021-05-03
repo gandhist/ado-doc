@@ -3,8 +3,12 @@ import { StyleSheet, Text, View } from 'react-native'
 import { List } from '../../components'
 import { Firebase } from '../../config'
 import { colors, fonts, getData } from '../../utils'
+import { useDispatch } from 'react-redux';
+
 
 const Message = ({ navigation }) => {
+    const dispatch = useDispatch();
+
     const [user, setUser] = useState({})
     const [historyChat, setHistoryChat] = useState([])
 
@@ -28,7 +32,6 @@ const Message = ({ navigation }) => {
                 const promises = await Object.keys(oldData).map(async key => {
                     const urlUidDoctor = `doctors/${oldData[key].uidPartner}`
                     const detailDoctor = await rootDB.child(urlUidDoctor).once('value')
-                    console.log('detail doctor', detailDoctor.val())
                     data.push({
                         id: key,
                         detailDoctor: detailDoctor.val(),
@@ -38,10 +41,9 @@ const Message = ({ navigation }) => {
 
                 await Promise.all(promises)
                 setHistoryChat(data)
-                console.log('ini list message', data)
             }
         })
-    }, [])
+    }, [user.uid])
     return (
         <View style={styles.page}>
             <View style={styles.content} >
